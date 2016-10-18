@@ -485,8 +485,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010364507942}
-  - 136: {fileID: 136000011851370060}
-  - 114: {fileID: 114000014274642378}
   m_Layer: 0
   m_Name: Bip01
   m_TagString: Untagged
@@ -502,6 +500,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013296495542}
+  - 136: {fileID: 136000011350624600}
+  - 114: {fileID: 114000010382240578}
   m_Layer: 0
   m_Name: Bip01 Spine
   m_TagString: Untagged
@@ -1031,8 +1031,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010722214056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 17.058}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010364507942}
@@ -1386,6 +1386,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombie: {fileID: 114000012727765226}
+--- !u!114 &114000010382240578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013132151298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombie: {fileID: 114000012727765226}
 --- !u!114 &114000010438493604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1457,8 +1469,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8d81c0559c014b418dc8894e577356d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
-  attackDist: 0.5
+  hp: 10
+  attackDist: 1.2
   damageValue: 10
 --- !u!114 &114000013267920222
 MonoBehaviour:
@@ -1496,18 +1508,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zombie: {fileID: 114000012727765226}
---- !u!114 &114000014274642378
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013114680960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zombie: {fileID: 114000012727765226}
 --- !u!136 &136000010348240102
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1534,6 +1534,19 @@ CapsuleCollider:
   m_Height: 0.55
   m_Direction: 0
   m_Center: {x: -0.17, y: 0, z: 0}
+--- !u!136 &136000011350624600
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013132151298}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.18
+  m_Height: 0.53
+  m_Direction: 0
+  m_Center: {x: -0.3, y: 0.06, z: 0}
 --- !u!136 &136000011521049110
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1560,19 +1573,6 @@ CapsuleCollider:
   m_Height: 0.37
   m_Direction: 0
   m_Center: {x: -0.16, y: 0, z: 0}
---- !u!136 &136000011851370060
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013114680960}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.17
-  m_Height: 0.69
-  m_Direction: 2
-  m_Center: {x: -0, y: 0, z: 0.28}
 --- !u!136 &136000012094436728
 CapsuleCollider:
   m_ObjectHideFlags: 1

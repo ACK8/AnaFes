@@ -20,13 +20,13 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012537772240}
   - 135: {fileID: 135000012538906178}
-  - 114: {fileID: 114000012052138056}
   - 54: {fileID: 54000011563851326}
   - 33: {fileID: 33000011188683788}
   - 23: {fileID: 23000012162954248}
+  - 114: {fileID: 114000012052138056}
   m_Layer: 0
   m_Name: Bullet
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -39,7 +39,7 @@ Transform:
   m_GameObject: {fileID: 1000011658458876}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,11 +106,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01678786561eae0438fdf0d44f1626ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  survivalDistance: 10
-  speed: 5
+  survivalDistance: 20
+  speed: 80
   originPos: {x: 0, y: 0, z: 0}
   direction: {x: 0, y: 0, z: 0}
-  hitEffect: {fileID: 1000010856527610, guid: af35a76e925f23949b8eecfe247987ae, type: 2}
+  hitEffect: {fileID: 100000, guid: d834642adc9326645adaa13be7ffc6ab, type: 2}
 --- !u!135 &135000012538906178
 SphereCollider:
   m_ObjectHideFlags: 1

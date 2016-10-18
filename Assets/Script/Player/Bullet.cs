@@ -26,8 +26,7 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        print(col.transform.position);
-        Instantiate(hitEffect, transform.position, transform.rotation);
+        //Instantiate(hitEffect, transform.position, transform.rotation);
 
         Destroy(this.gameObject);
     }

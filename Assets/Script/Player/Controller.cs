@@ -32,6 +32,7 @@ public class Controller : MonoBehaviour
 
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
         {
+			device.TriggerHapticPulse (100);
             line.enabled = true;
 
             GameObject bulletObject = Instantiate(bullet, firingPorts.transform.position, firingPorts.transform.rotation) as GameObject;

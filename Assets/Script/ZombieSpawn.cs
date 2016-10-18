@@ -6,13 +6,16 @@ public class ZombieSpawn : MonoBehaviour
     [SerializeField]
     private GameObject zombie;
     [SerializeField]
+    private Transform[] spawnPoint;
+    [SerializeField]
     private int waveNum;
-
+	[SerializeField]
+	private float spawnWait;
 
 
     void Start()
     {
-        StartCoroutine(Spawn(2f));
+		StartCoroutine(Spawn(spawnWait));
     }
 
     void Update()
@@ -25,7 +28,7 @@ public class ZombieSpawn : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(second);
-            Instantiate(zombie, transform.position, Quaternion.identity);
+            Instantiate(zombie, spawnPoint[Random.Range(0, spawnPoint.Length)].transform.position, Quaternion.identity);
         }
     }
 }

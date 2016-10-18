@@ -13,6 +13,7 @@ public class Zombie : MonoBehaviour
     private GameObject target;
     private NavMeshAgent navMesh;
     private Animator anim;
+	private bool isAlive = true;
 
     void Start()
     {
@@ -25,28 +26,29 @@ public class Zombie : MonoBehaviour
     }
 
     void Update()
-    {
-        if (target != null)
-        {
-            navMesh.SetDestination(target.transform.position);
-        }
+	{
+		float distance = Vector3.Distance (this.transform.position, target.transform.position);
 
-        Animation();
-    }
+		if (target != null && isAlive)
+		{
+			navMesh.SetDestination(target.transform.position);
+		}
 
-    void Animation()
-    {
-        float speed = Mathf.Clamp(navMesh.velocity.sqrMagnitude, 0f, 1f);
+		float speed = Mathf.Clamp(navMesh.velocity.sqrMagnitude, 0f, 1f);
 
-        //Idle or Run
-        anim.SetFloat("Speed", speed);
+		//Idle or Run
+		anim.SetFloat("Speed", speed);
 
-        //Attack
-        if (Vector3.Distance(this.transform.position, target.transform.position) < attackDist)
-        {
-            anim.SetTrigger("Attack");
-        }
+		//Attack
+		if (distance < attackDist) 
+		{
+			anim.SetTrigger ("Attack");
+		} 
 
+		if (!isAlive) 
+		{
+			Destroy (this.gameObject, 1.5f);
+		}
     }
 
     //子のChildeColliderTriggerから呼ばれる
@@ -57,12 +59,14 @@ public class Zombie : MonoBehaviour
             if (hp <= 0)
             {
                 //Death
-                anim.SetTrigger("Death");
+				anim.SetTrigger("Death");
+				isAlive = false;
+				navMesh.Stop ();
             }
             else
             {
                 //Hit
-                anim.SetTrigger("Hit");
+				anim.SetTrigger("Hit");
                 hp -= damageValue;
             }
         }
