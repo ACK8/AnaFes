@@ -1,19 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Zombie : MonoBehaviour
 {
     [SerializeField]
+    private GameObject bloodEffect;
+    [SerializeField]
     private int hp = 10;
+    [SerializeField]
+    private int damageValue;
     [SerializeField]
     private float attackDist;
     [SerializeField]
-    private int damageValue;
+    private float trackingDist;
 
     private GameObject target;
     private NavMeshAgent navMesh;
     private Animator anim;
-	private bool isAlive = true;
+    private float moveSpeed;
+    private bool isAlive = true;
 
     void Start()
     {
@@ -22,33 +26,48 @@ public class Zombie : MonoBehaviour
 
         target = GameObject.FindGameObjectWithTag("Player");
 
-        navMesh.speed = Random.Range(1f, 2f);
+        moveSpeed = Random.Range(1f, 2f);
+        navMesh.speed = moveSpeed;
     }
 
     void Update()
-	{
-		float distance = Vector3.Distance (this.transform.position, target.transform.position);
+    {
+        float distance = Vector3.Distance(
+            new Vector3(this.transform.position.x, 0f, this.transform.position.z),
+            new Vector3(target.transform.position.x, 0f, target.transform.position.z));
 
-		if (target != null && isAlive)
-		{
-			navMesh.SetDestination(target.transform.position);
-		}
+        if (target != null && isAlive)
+        {
+            if (trackingDist < distance)
+            {
+                navMesh.speed = moveSpeed;
+                navMesh.SetDestination(target.transform.position);
+            }
+            else
+            {
+                navMesh.speed = 0f;
+            }
+        }
 
-		float speed = Mathf.Clamp(navMesh.velocity.sqrMagnitude, 0f, 1f);
+        float speed = Mathf.Clamp(navMesh.velocity.sqrMagnitude, 0f, 1f);
 
-		//Idle or Run
-		anim.SetFloat("Speed", speed);
+        //Idle or Run
+        anim.SetFloat("Speed", speed);
 
-		//Attack
-		if (distance < attackDist) 
-		{
-			anim.SetTrigger ("Attack");
-		} 
+        //Attack
+        if (distance < attackDist)
+        {
+            anim.SetTrigger("Attack");
+        }
 
-		if (!isAlive) 
-		{
-			Destroy (this.gameObject, 1.5f);
-		}
+        //Death
+        if (hp <= 0)
+        {
+            anim.SetTrigger("Death");
+            isAlive = false;
+            navMesh.Stop();
+            Destroy(this.gameObject, 2f);
+        }
     }
 
     //子のChildeColliderTriggerから呼ばれる
@@ -56,17 +75,14 @@ public class Zombie : MonoBehaviour
     {
         if (col.gameObject.tag == "Bullet")
         {
-            if (hp <= 0)
-            {
-                //Death
-				anim.SetTrigger("Death");
-				isAlive = false;
-				navMesh.Stop ();
-            }
-            else
+            GameObject blood = Instantiate(bloodEffect, col.transform.position, bloodEffect.transform.rotation) as GameObject;
+            blood.transform.SetParent(this.gameObject.transform);
+            Destroy(blood.gameObject, 0.5f);
+
+            if (isAlive)
             {
                 //Hit
-				anim.SetTrigger("Hit");
+                anim.SetTrigger("Hit");
                 hp -= damageValue;
             }
         }
