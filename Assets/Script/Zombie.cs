@@ -26,7 +26,7 @@ public class Zombie : MonoBehaviour
 
         target = GameObject.FindGameObjectWithTag("Player");
 
-        moveSpeed = Random.Range(1f, 2f);
+        moveSpeed = Random.Range(0.5f, 1.4f);
         navMesh.speed = moveSpeed;
     }
 
