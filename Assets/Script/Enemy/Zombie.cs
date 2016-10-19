@@ -71,23 +71,17 @@ public class Zombie : MonoBehaviour
         }
     }
 
-    //子のChildeColliderTriggerから呼ばれる
-    public void RelayOnTriggerEnter(Collision col)
+    public void HitRaycast(RaycastHit hit)
     {
-        if (col.gameObject.tag == "Bullet")
-        {
-            GameObject blood = Instantiate(bloodEffect, col.transform.position, bloodEffect.transform.rotation) as GameObject;
-            blood.transform.SetParent(this.gameObject.transform);
-            Destroy(blood.gameObject, 0.5f);
+        GameObject blood = Instantiate(bloodEffect, hit.transform.position, bloodEffect.transform.rotation) as GameObject;
+        blood.transform.SetParent(this.gameObject.transform);
+        Destroy(blood.gameObject, 0.5f);
 
-            if (isAlive)
-            {
-                //Hit
-                anim.SetTrigger("Hit");
-                hp -= damageValue;
-            }
+        if (isAlive)
+        {
+            //Hit
+            anim.SetTrigger("Hit");
+            hp -= damageValue;
         }
     }
-
-
 }

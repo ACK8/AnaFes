@@ -11,6 +11,7 @@ public class Fire : MonoBehaviour
 {
     SteamVR_TrackedObject trackedObject;
 
+    public LayerMask layerMask;
     public GunType guntype = GunType.eHandGun;
     private GunType oldGuntype;
     public GameObject bullet;
@@ -18,7 +19,8 @@ public class Fire : MonoBehaviour
     public GameObject firePointLight;
 
     private Ray ray;
-	private GameObject gun;
+    private RaycastHit hit;
+    private GameObject gun;
     private NumberBulletGUI numberBullet;
     private Transform firePoint;
     private LineRenderer line;
@@ -41,6 +43,7 @@ public class Fire : MonoBehaviour
     {
 		ray.direction = firePoint.transform.forward;
 		ray.origin = firePoint.transform.position;
+       
 
 		line.SetPosition (0, ray.origin);
 		line.SetPosition (1, ray.GetPoint(200));
@@ -52,15 +55,20 @@ public class Fire : MonoBehaviour
         {
             if(numberBullet.numBullet > 0)
             {
+                //GameObject bulletObject = Instantiate(bullet, firePoint.position, firePoint.rotation) as GameObject;
+
+                //bulletObject.GetComponent<Bullet>().direction = firePoint.forward;
+                Instantiate(firePointLight, firePoint.position, firePoint.rotation);
                 device.TriggerHapticPulse(3000);
-
-                GameObject bulletObject = Instantiate(bullet, firePoint.position, firePoint.rotation) as GameObject;
-
-                bulletObject.GetComponent<Bullet>().direction = firePoint.forward;
-
                 numberBullet.numBullet -= 1;
 
-                Instantiate(firePointLight, firePoint.position, firePoint.rotation);
+                if (Physics.Raycast(ray, out hit, 200.0f))
+                {
+                    if (hit.transform.tag == "Zombie")
+                    {
+                        hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit);
+                    }
+                }
             }
         }
         
