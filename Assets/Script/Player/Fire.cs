@@ -15,8 +15,9 @@ public class Fire : MonoBehaviour
     private GunType oldGuntype;
     public GameObject bullet;
     public GameObject[] gunArray;
+    public GameObject firePointLight;
 
-	private Ray ray;
+    private Ray ray;
 	private GameObject gun;
     private NumberBulletGUI numberBullet;
     private Transform firePoint;
@@ -58,6 +59,8 @@ public class Fire : MonoBehaviour
                 bulletObject.GetComponent<Bullet>().direction = firePoint.forward;
 
                 numberBullet.numBullet -= 1;
+
+                Instantiate(firePointLight, firePoint.position, firePoint.rotation);
             }
         }
         
