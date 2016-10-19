@@ -1,18 +1,18 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    private TextMesh textMesh;
+    private Text textMesh;
     public static uint numScore = 0; 
 
 	void Start ()
     {
-        textMesh = GetComponent<TextMesh>();
+        textMesh = GetComponent<Text>();
     }
 
     void Update ()
     {
-        textMesh.text = string.Format("{0}", numScore);
+        textMesh.text = "Score: " + numScore;
     }
 }

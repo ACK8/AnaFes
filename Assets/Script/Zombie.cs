@@ -26,7 +26,7 @@ public class Zombie : MonoBehaviour
 
         target = GameObject.FindGameObjectWithTag("Player");
 
-        moveSpeed = Random.Range(0.5f, 1.4f);
+        moveSpeed = Random.Range(1f, 1.4f);
         navMesh.speed = moveSpeed;
     }
 
@@ -61,11 +61,12 @@ public class Zombie : MonoBehaviour
         }
 
         //Death
-        if (hp <= 0)
+        if (hp <= 0 && isAlive)
         {
             anim.SetTrigger("Death");
             isAlive = false;
             navMesh.Stop();
+            Score.numScore += 100;
             Destroy(this.gameObject, 2f);
         }
     }
