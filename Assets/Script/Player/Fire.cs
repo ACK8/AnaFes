@@ -18,8 +18,9 @@ public class Fire : MonoBehaviour
 
 	private Ray ray;
 	private GameObject gun;
-	private Transform firePoint;
-	private LineRenderer line;
+    private NumberBulletGUI numberBullet;
+    private Transform firePoint;
+    private LineRenderer line;
 
     void Start()
 	{
@@ -32,6 +33,7 @@ public class Fire : MonoBehaviour
         gun.transform.SetParent(this.gameObject.transform);
 
         firePoint = gun.transform.FindChild("FirePoint");
+        numberBullet = gun.transform.FindChild("NumberBulletGUI").gameObject.GetComponent<NumberBulletGUI>();
     }
 
     void Update()
@@ -44,14 +46,34 @@ public class Fire : MonoBehaviour
 
         var device = SteamVR_Controller.Input((int)trackedObject.index);
 
+        //弾を打つ
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
         {
-			device.TriggerHapticPulse (3000);
+            if(numberBullet.numBullet > 0)
+            {
+                device.TriggerHapticPulse(3000);
 
+                GameObject bulletObject = Instantiate(bullet, firePoint.position, firePoint.rotation) as GameObject;
 
-            GameObject bulletObject = Instantiate(bullet, firePoint.position, firePoint.rotation) as GameObject;
+                bulletObject.GetComponent<Bullet>().direction = firePoint.forward;
 
-            bulletObject.GetComponent<Bullet>().direction = firePoint.forward;
+                numberBullet.numBullet -= 1;
+            }
+        }
+        
+        //弾をリロード
+        if(device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+        {
+            switch (guntype)
+            {
+                case GunType.eHandGun:
+                    numberBullet.numBullet = 15;
+                    break;
+
+                case GunType.eShotGun:
+                    numberBullet.numBullet = 10;
+                    break;
+            }
         }
     }
 }
