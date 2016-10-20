@@ -451,6 +451,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a6225fd438b154da27b47578af58eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   guntype: 0
   bullet: {fileID: 1000011658458876, guid: 06c2a99f0a9f47947a5c395f28e3f92f, type: 2}
   gunArray:
@@ -524,6 +527,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64a6225fd438b154da27b47578af58eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
   guntype: 0
   bullet: {fileID: 1000011658458876, guid: 06c2a99f0a9f47947a5c395f28e3f92f, type: 2}
   gunArray:
@@ -678,8 +684,8 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
-    startWidth: 0.008
-    endWidth: 0.008
+    startWidth: 0.002
+    endWidth: 0.002
     m_StartColor:
       serializedVersion: 2
       rgba: 4278190335
@@ -720,8 +726,8 @@ LineRenderer:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
   m_Parameters:
-    startWidth: 0.008
-    endWidth: 0.008
+    startWidth: 0.002
+    endWidth: 0.002
     m_StartColor:
       serializedVersion: 2
       rgba: 4278190335

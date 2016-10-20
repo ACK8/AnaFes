@@ -1473,8 +1473,8 @@ MonoBehaviour:
     type: 2}
   hp: 30
   damageValue: 10
-  attackDist: 1.8
-  trackingDist: 1.8
+  attackDist: 1.5
+  trackingDist: 1.5
 --- !u!114 &114000013267920222
 MonoBehaviour:
   m_ObjectHideFlags: 1
