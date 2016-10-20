@@ -3,10 +3,10 @@
 public class ChildeColliderTrigger : MonoBehaviour
 {
     [SerializeField]
-    private Zombie zombie;
+    private Enemy enemy;
 
     public void HitRaycast(RaycastHit hit)
     {
-        zombie.HitRaycast(hit);
+        enemy.HitRaycast(hit);
     }
 }
