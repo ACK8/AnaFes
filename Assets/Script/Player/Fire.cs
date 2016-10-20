@@ -7,13 +7,19 @@ public enum GunType
     eShotGun = 1,
 }
 
+public enum GunBulletMax
+{
+    eHandGun = 30,
+    eShotGun = 15,
+}
+
 public class Fire : MonoBehaviour
 {
     SteamVR_TrackedObject trackedObject;
 
     public LayerMask layerMask;
-    public GunType guntype = GunType.eHandGun;
-    private GunType oldGuntype;
+    public GunType currentGuntype = GunType.eHandGun;
+    public GunBulletMax currentGunBulletMax = GunBulletMax.eHandGun;
     public GameObject bullet;
     public GameObject[] gunArray;
     public GameObject firePointLight;
@@ -24,14 +30,15 @@ public class Fire : MonoBehaviour
     private NumberBulletGUI numberBullet;
     private Transform firePoint;
     private LineRenderer line;
+    private GunType oldGuntype;
 
     void Start()
 	{
 		line = GetComponent<LineRenderer> ();
         trackedObject = GetComponent<SteamVR_TrackedObject>();
-        oldGuntype = guntype;
+        oldGuntype = currentGuntype;
 
-        gun = Instantiate(gunArray[(int)guntype]) as GameObject;
+        gun = Instantiate(gunArray[(int)currentGuntype]) as GameObject;
 
         gun.transform.SetParent(this.gameObject.transform);
 
@@ -51,7 +58,7 @@ public class Fire : MonoBehaviour
         var device = SteamVR_Controller.Input((int)trackedObject.index);
 
         //弾を打つ
-        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && !numberBullet.isRelod)
         {
             if(numberBullet.numBullet > 0)
             {
@@ -68,22 +75,34 @@ public class Fire : MonoBehaviour
                     {
                         hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit);
                     }
+
+                    if (hit.transform.tag == "Ghoul")
+                    {
+                        hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit);
+                    }
                 }
             }
         }
         
         //弾をリロード
-        if(device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+        if(device.GetPressDown(SteamVR_Controller.ButtonMask.Grip) && !numberBullet.isRelod)
         {
-            switch (guntype)
+            if(numberBullet.numBullet < numberBullet.numBulletMax)
             {
-                case GunType.eHandGun:
-                    numberBullet.numBullet = 15;
-                    break;
+                numberBullet.isRelod = true;
 
-                case GunType.eShotGun:
-                    numberBullet.numBullet = 10;
-                    break;
+                switch (currentGuntype)
+                {
+                    case GunType.eHandGun:
+                        numberBullet.numBullet = numberBullet.numBulletMax;
+                        numberBullet.relodTime = 2;
+                        break;
+
+                    case GunType.eShotGun:
+                        numberBullet.numBullet = numberBullet.numBulletMax;
+                        numberBullet.relodTime = 4;
+                        break;
+                }
             }
         }
     }

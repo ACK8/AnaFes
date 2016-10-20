@@ -496,4 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15eef91a265dde40b353c6efefdbe55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numBullet: 15
+  numBullet: 0
+  numBulletMax: 30
+  isRelod: 0
+  relodTime: 0

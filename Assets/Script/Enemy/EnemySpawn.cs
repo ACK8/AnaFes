@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemySpawn : MonoBehaviour
 {
     [SerializeField]
-    private GameObject zombie;
+    private GameObject[] enemyObject;
     [SerializeField]
     private Transform[] spawnPoint;
     [SerializeField]
@@ -27,27 +27,29 @@ public class EnemySpawn : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Time.realtimeSinceStartup);
+        //Debug.Log(Time.realtimeSinceStartup);
 
-        if (Time.realtimeSinceStartup > waveSwitchingTime[waveNum])
+        if(waveSwitchingTime.Length > waveNum)
         {
-            waveNum += 1;
+            if (Time.realtimeSinceStartup > waveSwitchingTime[waveNum])
+            {
+                waveNum += 1;
+                Debug.Log("waveCount");
+            }
+        }
+
+        if(waveNum >= waveSwitchingTime.Length)
+        {
+            waveNum = waveSwitchingTime.Length - 1;
         }
 
         if (Time.realtimeSinceStartup > spawnWait[waveNum] + spawnWaitOld)
         {
-            Instantiate(zombie, spawnPoint[Random.Range(0, spawnPoint.Length)].transform.position, Quaternion.identity);
+            int enemyType = Random.Range(0, enemyObject.Length);
+
+            Instantiate(enemyObject[enemyType], spawnPoint[Random.Range(0, spawnPoint.Length)].transform.position, Quaternion.identity);
             spawnWaitOld += spawnWait[waveNum];
         }
 
-    }
-
-    private IEnumerator Spawn(float second)
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(second);
-            Instantiate(zombie, spawnPoint[Random.Range(0, spawnPoint.Length)].transform.position, Quaternion.identity);
-        }
     }
 }
