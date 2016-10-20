@@ -1385,7 +1385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 114000012727765226}
+  enemy: {fileID: 114000012727765226}
 --- !u!114 &114000010382240578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1397,7 +1397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 114000012727765226}
+  enemy: {fileID: 114000012727765226}
 --- !u!114 &114000010438493604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1409,7 +1409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 114000012727765226}
+  enemy: {fileID: 114000012727765226}
 --- !u!114 &114000011203148806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1421,7 +1421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 114000012727765226}
+  enemy: {fileID: 114000012727765226}
 --- !u!114 &114000011236986564
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1433,7 +1433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 114000012727765226}
+  enemy: {fileID: 114000012727765226}
 --- !u!114 &114000011649923210
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1445,7 +1445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 114000012727765226}
+  enemy: {fileID: 114000012727765226}
 --- !u!114 &114000012693358294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1457,7 +1457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 114000012727765226}
+  enemy: {fileID: 114000012727765226}
 --- !u!114 &114000012727765226
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1486,7 +1486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 114000012727765226}
+  enemy: {fileID: 114000012727765226}
 --- !u!114 &114000013898954812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1498,7 +1498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 114000012727765226}
+  enemy: {fileID: 114000012727765226}
 --- !u!114 &114000014152264280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1510,7 +1510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b28b657a74046349903ac35a297475a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 114000012727765226}
+  enemy: {fileID: 114000012727765226}
 --- !u!136 &136000010348240102
 CapsuleCollider:
   m_ObjectHideFlags: 1
