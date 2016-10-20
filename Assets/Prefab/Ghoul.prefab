@@ -158,6 +158,7 @@ GameObject:
   - 4: {fileID: 4000010997955632}
   - 95: {fileID: 95000012780789928}
   - 195: {fileID: 195000010778738012}
+  - 136: {fileID: 136000011708107172}
   - 114: {fileID: 114000011267523568}
   m_Layer: 11
   m_Name: Ghoul
@@ -2166,6 +2167,7 @@ MonoBehaviour:
     type: 2}
   hp: 30
   damageValue: 10
+  attackAnimTime: 0.09
   attackDist: 1.5
   trackingDist: 1.5
 --- !u!114 &114000011402087016
@@ -2378,6 +2380,19 @@ CapsuleCollider:
   m_Height: 0.51
   m_Direction: 2
   m_Center: {x: 0, y: -0.02, z: -0.21}
+--- !u!136 &136000011708107172
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010453781744}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8, z: 0.5}
 --- !u!136 &136000011721811526
 CapsuleCollider:
   m_ObjectHideFlags: 1

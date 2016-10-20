@@ -7,27 +7,32 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int hp = 10;
     [SerializeField]
-    private int damageValue;
+    private int damageValue;    //ダメージ値
     [SerializeField]
-    private float attackDist;
+    private float attackAnimTime;   //攻撃が有効になるアニメーション時間
     [SerializeField]
-    private float trackingDist;
+    private float attackDist;   //攻撃を始めるプレイヤーとの距離
+    [SerializeField]
+    private float trackingDist; //追跡をやめるプレイヤーとの距離
 
     private GameObject target;
+    private CapsuleCollider handCollider;
     private NavMeshAgent navMesh;
     private Animator anim;
     private float moveSpeed;
     private bool isAlive = true;
+    private bool isAttack = false;
 
     void Start()
     {
         navMesh = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
-
+        handCollider = GetComponent<CapsuleCollider>();
         target = GameObject.FindGameObjectWithTag("Player");
 
         moveSpeed = Random.Range(1f, 1.4f);
         navMesh.speed = moveSpeed;
+        handCollider.enabled = false;
     }
 
     void Update()
@@ -50,6 +55,26 @@ public class Enemy : MonoBehaviour
         }
 
         float speed = Mathf.Clamp(navMesh.velocity.sqrMagnitude, 0f, 1f);
+
+        //Attack
+        if (distance < attackDist)
+        {
+            anim.Update(0);
+            AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+            if (stateInfo.IsName("Base Layer.Attack"))
+            {
+                if (attackAnimTime < stateInfo.length && (attackAnimTime + 0.01f) > stateInfo.length && !isAttack)
+                    isAttack = true;
+            }
+            else
+                isAttack = false;
+        }
+
+        handCollider.enabled = isAttack;
+
+
+        //****  Animation  ****//
 
         //Idle or Run
         anim.SetFloat("Speed", speed);

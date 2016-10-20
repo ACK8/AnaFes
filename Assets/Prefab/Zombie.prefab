@@ -103,6 +103,7 @@ GameObject:
   - 4: {fileID: 4000011822991148}
   - 95: {fileID: 95000012975282762}
   - 195: {fileID: 195000010444509798}
+  - 136: {fileID: 136000011975442806}
   - 114: {fileID: 114000012727765226}
   m_Layer: 8
   m_Name: Zombie
@@ -1473,6 +1474,7 @@ MonoBehaviour:
     type: 2}
   hp: 30
   damageValue: 10
+  attackAnimTime: 0.08
   attackDist: 1.5
   trackingDist: 1.5
 --- !u!114 &114000013267920222
@@ -1576,6 +1578,19 @@ CapsuleCollider:
   m_Height: 0.37
   m_Direction: 0
   m_Center: {x: -0.16, y: 0, z: 0}
+--- !u!136 &136000011975442806
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010722214056}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.8, z: 0.7}
 --- !u!136 &136000012094436728
 CapsuleCollider:
   m_ObjectHideFlags: 1
