@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Zombie
   - Bullet
+  - Ghoul
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Zombie
   - Bullet
   - Player
-  - 
+  - Ghoul
   - 
   - 
   - 
