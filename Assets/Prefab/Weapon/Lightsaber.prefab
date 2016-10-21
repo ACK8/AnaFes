@@ -51,10 +51,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010082050514}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.53729963, y: 0, z: 0, w: 0.8433915}
+  m_LocalPosition: {x: 0, y: 0.08, z: 0.04}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 65, y: 0, z: 0}
   m_Children:
   - {fileID: 4000013974569200}
   m_Father: {fileID: 0}
@@ -121,8 +121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserPos: {fileID: 1000011523133438}
-  MaxlaserLength: 1
+  MaxlaserLength: 1.5
   addingLaserLength: 15
+  color: {r: 1, g: 0, b: 0, a: 0}
 --- !u!120 &120000010692978852
 LineRenderer:
   m_ObjectHideFlags: 1

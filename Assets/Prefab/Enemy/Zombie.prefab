@@ -107,7 +107,7 @@ GameObject:
   - 114: {fileID: 114000012727765226}
   m_Layer: 8
   m_Name: Zombie
-  m_TagString: Zombie
+  m_TagString: ZombieAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1474,7 +1474,7 @@ MonoBehaviour:
     type: 2}
   hp: 30
   damageValue: 10
-  attackAnimTime: 0.08
+  attackAnimRate: 0.3
   attackDist: 1.5
   trackingDist: 1.5
 --- !u!114 &114000013267920222

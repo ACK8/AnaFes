@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int damageValue;    //ダメージ値
     [SerializeField]
-    private float attackAnimTime;   //攻撃が有効になるアニメーション時間
+    private float attackAnimRate;   //攻撃が有効になるアニメーション時間
     [SerializeField]
     private float attackDist;   //攻撃を始めるプレイヤーとの距離
     [SerializeField]
@@ -56,6 +56,8 @@ public class Enemy : MonoBehaviour
 
         float speed = Mathf.Clamp(navMesh.velocity.sqrMagnitude, 0f, 1f);
 
+        handCollider.enabled = false;
+
         //Attack
         if (distance < attackDist)
         {
@@ -64,15 +66,16 @@ public class Enemy : MonoBehaviour
 
             if (stateInfo.IsName("Base Layer.Attack"))
             {
-                if (attackAnimTime < stateInfo.length && (attackAnimTime + 0.01f) > stateInfo.length && !isAttack)
-                    isAttack = true;
+                if (attackAnimRate <= stateInfo.normalizedTime && stateInfo.normalizedTime < (attackAnimRate + 0.008))
+                {
+                    handCollider.enabled = true;
+                }
+                else
+                {
+                    handCollider.enabled = false;
+                }
             }
-            else
-                isAttack = false;
         }
-
-        handCollider.enabled = isAttack;
-
 
         //****  Animation  ****//
 

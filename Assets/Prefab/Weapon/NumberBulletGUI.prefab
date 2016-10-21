@@ -104,3 +104,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numBullet: 0
+  numBulletMax: 0
+  isRelod: 0
+  relodTime: 0

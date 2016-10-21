@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class Lightsaber : MonoBehaviour
 {
@@ -9,6 +8,8 @@ public class Lightsaber : MonoBehaviour
     private float MaxlaserLength = 1.5f;
     [SerializeField]
     private float addingLaserLength;
+    [SerializeField]
+    private Color color;
 
     private SteamVR_TrackedObject trackedObject;
     private LineRenderer line;
@@ -20,15 +21,16 @@ public class Lightsaber : MonoBehaviour
     void Start()
     {
         line = GetComponent<LineRenderer>();
-        //trackedObject = GetComponent<SteamVR_TrackedObject>();
+        line.SetColors(color, color);
+
+        trackedObject = gameObject.transform.parent.gameObject.GetComponent<SteamVR_TrackedObject>();
     }
 
     void Update()
     {
-        //var device = SteamVR_Controller.Input((int)trackedObject.index);
+        var device = SteamVR_Controller.Input((int)trackedObject.index);
 
-        //if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
-        if (Input.GetKey(KeyCode.Space))
+        if (device.GetPress(SteamVR_Controller.ButtonMask.Trigger))
         {
             if (laserLengh <= MaxlaserLength)
                 laserLengh += addingLaserLength * Time.deltaTime;
