@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7b9a4393536c3124b8f013fd8583094b
-timeCreated: 1477273181
+guid: 7f3bb9a8bc3c10a4a8836761ddd37f53
+timeCreated: 1477274717
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -10,7 +10,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Zombie Control
+  - Green Fuz
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
