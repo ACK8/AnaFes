@@ -66,7 +66,7 @@ public class Enemy : MonoBehaviour
 
             if (stateInfo.IsName("Base Layer.Attack"))
             {
-                if (attackAnimRate <= stateInfo.normalizedTime && stateInfo.normalizedTime < (attackAnimRate + 0.008))
+                if (attackAnimRate <= stateInfo.normalizedTime && stateInfo.normalizedTime < (attackAnimRate + 0.01))
                 {
                     handCollider.enabled = true;
                 }
