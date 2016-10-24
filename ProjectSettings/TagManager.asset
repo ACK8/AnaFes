@@ -9,6 +9,9 @@ TagManager:
   - Ghoul
   - ZombieAttack
   - GhoulAttack
+  - GameStart
+  - Restart
+  - QuitGame
   layers:
   - Default
   - TransparentFX

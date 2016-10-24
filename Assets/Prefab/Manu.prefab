@@ -39,7 +39,7 @@ GameObject:
   - 23: {fileID: 23000010209745124}
   m_Layer: 0
   m_Name: QuitGame
-  m_TagString: Untagged
+  m_TagString: QuitGame
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,7 +57,7 @@ GameObject:
   - 23: {fileID: 23000011265416072}
   m_Layer: 0
   m_Name: GameStart
-  m_TagString: Untagged
+  m_TagString: GameStart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -75,7 +75,7 @@ GameObject:
   - 23: {fileID: 23000013131786450}
   m_Layer: 0
   m_Name: Restart
-  m_TagString: Untagged
+  m_TagString: Restart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

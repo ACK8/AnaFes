@@ -17,6 +17,7 @@ public class Fire : MonoBehaviour
 {
     SteamVR_TrackedObject trackedObject;
 
+    public bool isRestart = false;
     public LayerMask layerMask;
     public GunType currentGuntype = GunType.eHandGun;
     public GunBulletMax currentGunBulletMax = GunBulletMax.eHandGun;
@@ -51,7 +52,6 @@ public class Fire : MonoBehaviour
 		ray.direction = firePoint.transform.forward;
 		ray.origin = firePoint.transform.position;
        
-
 		line.SetPosition (0, ray.origin);
 		line.SetPosition (1, ray.GetPoint(200));
 
@@ -79,6 +79,23 @@ public class Fire : MonoBehaviour
                     if (hit.transform.tag == "Ghoul")
                     {
                         hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit);
+                    }
+
+                    if (hit.transform.tag == "GameStart")
+                    {
+                        Debug.Log("GameStartをクリック");
+                    }
+
+                    if (hit.transform.tag == "Restart")
+                    {
+                        Debug.Log("Restartをクリック");
+                        isRestart = true;
+                    }
+
+                    if (hit.transform.tag == "QuitGame")
+                    {
+                        Debug.Log("QuitGameをクリック");
+                        Application.Quit();
                     }
                 }
             }
