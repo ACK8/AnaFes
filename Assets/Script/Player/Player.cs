@@ -31,12 +31,13 @@ public class Player : MonoBehaviour
     {
         this.transform.position = new Vector3(player.transform.position.x, 0f, player.transform.position.z);
         this.transform.rotation = Quaternion.identity;
-        
-        if(isPlayerAlive)
+
+        if (isPlayerAlive)
             hpBar.value = hp;
 
         if (hp <= 0)
         {
+            GameManager.Instance.isGamePlaying = false;
             gameOverText.gameObject.SetActive(true);
             isPlayerAlive = false;
         }
@@ -46,12 +47,14 @@ public class Player : MonoBehaviour
     {
         if (hit.tag == "ZombieAttack")
         {
-            hp -= ZombieDamage;
+            if (0 < hp)
+                hp -= ZombieDamage;
         }
 
         if (hit.tag == "GhoulAttack")
         {
-            hp -= GhoulDamage;
+            if (0 < hp)
+                hp -= GhoulDamage;
         }
     }
 }

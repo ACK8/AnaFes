@@ -37,6 +37,13 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.Instance.isGamePlaying)
+        {
+            navMesh.speed = 0f;
+            anim.SetFloat("Speed", 0);
+            return;
+        }
+
         float distance = Vector3.Distance(
             new Vector3(this.transform.position.x, 0f, this.transform.position.z),
             new Vector3(target.transform.position.x, 0f, target.transform.position.z));
