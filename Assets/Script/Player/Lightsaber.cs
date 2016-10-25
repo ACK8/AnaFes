@@ -55,8 +55,10 @@ public class Lightsaber : MonoBehaviour
             {
                 hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit);
             }
+            if (hit.transform.tag == "Ghoul")
+            {
+                hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit);
+            }
         }
-
-
     }
 }

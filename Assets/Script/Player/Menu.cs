@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -12,13 +12,12 @@ public class Menu : MonoBehaviour
     public GameObject menuObject;
     public GameObject pawon;
     public GameObject NowPawon;
-
-
+    
     private Fire fireLeft;
     private Fire fireRight;
     private GameObject currentMenu = null;
 
-    void Start ()
+    void Start()
     {
         trackedObjectLeft = leftTracked.GetComponent<SteamVR_TrackedObject>();
         trackedObjectRight = rightTracked.GetComponent<SteamVR_TrackedObject>();
@@ -28,7 +27,7 @@ public class Menu : MonoBehaviour
         NowPawon = Instantiate(pawon);
     }
 
-    void Update ()
+    void Update()
     {
         var deviceLeft = SteamVR_Controller.Input((int)trackedObjectLeft.index);
         var deviceRight = SteamVR_Controller.Input((int)trackedObjectRight.index);
@@ -39,7 +38,7 @@ public class Menu : MonoBehaviour
         //メニューボタン
         if (isLeft || isRight)
         {
-            if(currentMenu == null)
+            if (currentMenu == null)
             {
                 Vector3 d = head.forward;
                 d.y = 0.0f;
@@ -54,12 +53,33 @@ public class Menu : MonoBehaviour
             }
         }
 
-        if(fireLeft.isRestart || fireRight.isRestart)
+        if (fireLeft.isRestart || fireRight.isRestart)
         {
+            EnemyManager.Instance.DestroyEnemys();
+
+            /*
+            currentMenu.SetActive(false);
+            
+
             fireLeft.isRestart = false;
             fireRight.isRestart = false;
 
             Destroy(NowPawon);
+
+            GameObject[] zombieList = GameObject.FindGameObjectsWithTag("ZombieAttack");
+            GameObject[] ghoulList = GameObject.FindGameObjectsWithTag("GhoulAttack");
+
+            for (int i = 0; i < zombieList.Length; i++)
+            {
+                Debug.Log(zombieList[i].tag);
+                Destroy(zombieList[i]);
+            }
+
+            for (int i = 0; i < ghoulList.Length; i++)
+            {
+                Destroy(ghoulList[i]);
+            }
+            */
         }
     }
 }

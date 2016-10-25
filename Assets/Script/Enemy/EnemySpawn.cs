@@ -29,7 +29,7 @@ public class EnemySpawn : MonoBehaviour
     {
         //Debug.Log(Time.realtimeSinceStartup);
 
-        if(waveSwitchingTime.Length > waveNum)
+        if (waveSwitchingTime.Length > waveNum)
         {
             if (Time.realtimeSinceStartup > waveSwitchingTime[waveNum])
             {
@@ -38,7 +38,7 @@ public class EnemySpawn : MonoBehaviour
             }
         }
 
-        if(waveNum >= waveSwitchingTime.Length)
+        if (waveNum >= waveSwitchingTime.Length)
         {
             waveNum = waveSwitchingTime.Length - 1;
         }
@@ -47,7 +47,11 @@ public class EnemySpawn : MonoBehaviour
         {
             int enemyType = Random.Range(0, enemyObject.Length);
 
-            Instantiate(enemyObject[enemyType], spawnPoint[Random.Range(0, spawnPoint.Length)].transform.position, Quaternion.identity);
+            EnemyManager.Instance.spawnEnemyList.Add(
+                Instantiate(enemyObject[enemyType],
+                spawnPoint[Random.Range(0, spawnPoint.Length)].transform.position,
+                Quaternion.identity) as GameObject);
+
             spawnWaitOld += spawnWait[waveNum];
         }
 
