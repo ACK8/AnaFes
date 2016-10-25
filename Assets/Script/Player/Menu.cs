@@ -10,9 +10,7 @@ public class Menu : MonoBehaviour
     public GameObject rightTracked;
     public Transform head;
     public GameObject menuObject;
-    public GameObject pawon;
-    public GameObject NowPawon;
-    
+
     private Fire fireLeft;
     private Fire fireRight;
     private GameObject currentMenu = null;
@@ -23,8 +21,6 @@ public class Menu : MonoBehaviour
         trackedObjectRight = rightTracked.GetComponent<SteamVR_TrackedObject>();
         fireLeft = leftTracked.GetComponent<Fire>();
         fireRight = rightTracked.GetComponent<Fire>();
-
-        NowPawon = Instantiate(pawon);
     }
 
     void Update()
@@ -37,7 +33,7 @@ public class Menu : MonoBehaviour
 
         //メニューボタン
         if (isLeft || isRight)
-        {
+        { 
             if (currentMenu == null)
             {
                 Vector3 d = head.forward;
@@ -49,37 +45,40 @@ public class Menu : MonoBehaviour
             }
             else
             {
-                Destroy(currentMenu);
+                Destroy(currentMenu.gameObject);
             }
         }
 
+        //リスタート
         if (fireLeft.isRestart || fireRight.isRestart)
         {
+            GameManager.Instance.EnanledGameOverText(false);
+            GameManager.Instance.InitGame();
             EnemyManager.Instance.DestroyEnemys();
-
-            /*
-            currentMenu.SetActive(false);
-            
 
             fireLeft.isRestart = false;
             fireRight.isRestart = false;
 
-            Destroy(NowPawon);
+            GameManager.Instance.isGamePlaying = false;
 
-            GameObject[] zombieList = GameObject.FindGameObjectsWithTag("ZombieAttack");
-            GameObject[] ghoulList = GameObject.FindGameObjectsWithTag("GhoulAttack");
+            Destroy(currentMenu.gameObject);
+        }
 
-            for (int i = 0; i < zombieList.Length; i++)
+        if (GameManager.Instance.isGamePlaying)
+        {
+            if (currentMenu != null)
             {
-                Debug.Log(zombieList[i].tag);
-                Destroy(zombieList[i]);
+                currentMenu.transform.FindChild("GameStart").gameObject.SetActive(false);
             }
+        }
 
-            for (int i = 0; i < ghoulList.Length; i++)
-            {
-                Destroy(ghoulList[i]);
-            }
-            */
+        //スタート
+        if (fireLeft.isGameStart || fireRight.isGameStart)
+        {
+            Destroy(currentMenu.gameObject);
+
+            fireLeft.isGameStart = false;
+            fireRight.isGameStart = false;
         }
     }
 }

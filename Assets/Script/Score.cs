@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
     private Text textMesh;
+
     public static uint numScore = 0; 
 
 	void Start ()

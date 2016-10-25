@@ -18,6 +18,7 @@ public class Fire : MonoBehaviour
     SteamVR_TrackedObject trackedObject;
 
     public bool isRestart = false;
+    public bool isGameStart = false;
     public LayerMask layerMask;
     public GunType currentGuntype = GunType.eHandGun;
     public GunBulletMax currentGunBulletMax = GunBulletMax.eHandGun;
@@ -34,8 +35,8 @@ public class Fire : MonoBehaviour
     private GunType oldGuntype;
 
     void Start()
-	{
-		line = GetComponent<LineRenderer> ();
+    {
+        line = GetComponent<LineRenderer>();
         trackedObject = GetComponent<SteamVR_TrackedObject>();
         oldGuntype = currentGuntype;
 
@@ -49,18 +50,18 @@ public class Fire : MonoBehaviour
 
     void Update()
     {
-		ray.direction = firePoint.transform.forward;
-		ray.origin = firePoint.transform.position;
-       
-		line.SetPosition (0, ray.origin);
-		line.SetPosition (1, ray.GetPoint(200));
+        ray.direction = firePoint.transform.forward;
+        ray.origin = firePoint.transform.position;
+        
+        line.SetPosition(0, ray.origin);
+        line.SetPosition(1, ray.GetPoint(200));
 
         var device = SteamVR_Controller.Input((int)trackedObject.index);
 
         //弾を打つ
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && !numberBullet.isRelod)
         {
-            if(numberBullet.numBullet > 0)
+            if (numberBullet.numBullet > 0)
             {
                 //GameObject bulletObject = Instantiate(bullet, firePoint.position, firePoint.rotation) as GameObject;
 
@@ -84,6 +85,9 @@ public class Fire : MonoBehaviour
                     if (hit.transform.tag == "GameStart")
                     {
                         Debug.Log("GameStartをクリック");
+                        GameManager.Instance.CreateSpawnPoint();
+                        GameManager.Instance.isGamePlaying = true;
+                        isGameStart = true;
                     }
 
                     if (hit.transform.tag == "Restart")
@@ -100,11 +104,11 @@ public class Fire : MonoBehaviour
                 }
             }
         }
-        
+
         //弾をリロード
-        if(device.GetPressDown(SteamVR_Controller.ButtonMask.Grip) && !numberBullet.isRelod)
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip) && !numberBullet.isRelod)
         {
-            if(numberBullet.numBullet < numberBullet.numBulletMax)
+            if (numberBullet.numBullet < numberBullet.numBulletMax)
             {
                 numberBullet.isRelod = true;
 
@@ -120,6 +124,23 @@ public class Fire : MonoBehaviour
                         numberBullet.relodTime = 4;
                         break;
                 }
+            }
+        }
+    }
+
+    public void InitFire()
+    {
+        if (numberBullet.numBullet < numberBullet.numBulletMax)
+        {
+            switch (currentGuntype)
+            {
+                case GunType.eHandGun:
+                    numberBullet.numBullet = numberBullet.numBulletMax;
+                    break;
+
+                case GunType.eShotGun:
+                    numberBullet.numBullet = numberBullet.numBulletMax;
+                    break;
             }
         }
     }

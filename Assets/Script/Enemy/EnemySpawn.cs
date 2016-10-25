@@ -17,6 +17,8 @@ public class EnemySpawn : MonoBehaviour
     private float spawnWaitOld;
 
 
+    private float time;
+
     void Start()
     {
 
@@ -27,11 +29,13 @@ public class EnemySpawn : MonoBehaviour
 
     void Update()
     {
+        time += Time.deltaTime;
+                
         //Debug.Log(Time.realtimeSinceStartup);
 
         if (waveSwitchingTime.Length > waveNum)
         {
-            if (Time.realtimeSinceStartup > waveSwitchingTime[waveNum])
+            if (time > waveSwitchingTime[waveNum])
             {
                 waveNum += 1;
                 Debug.Log("waveCount");
@@ -43,7 +47,7 @@ public class EnemySpawn : MonoBehaviour
             waveNum = waveSwitchingTime.Length - 1;
         }
 
-        if (Time.realtimeSinceStartup > spawnWait[waveNum] + spawnWaitOld)
+        if (time > spawnWait[waveNum] + spawnWaitOld)
         {
             int enemyType = Random.Range(0, enemyObject.Length);
 

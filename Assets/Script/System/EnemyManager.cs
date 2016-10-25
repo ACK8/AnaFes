@@ -8,10 +8,14 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
 
     public void DestroyEnemys()
     {
-        foreach(GameObject enemy in spawnEnemyList)
+        foreach (GameObject enemy in spawnEnemyList)
         {
-            Destroy(enemy);
-            spawnEnemyList.Clear();
+            Destroy(enemy.gameObject);
         }
+        spawnEnemyList.Clear();
+        spawnEnemyList = new List<GameObject>();
+
+
+
     }
 }

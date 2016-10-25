@@ -9,22 +9,26 @@ public class Player : MonoBehaviour
     [SerializeField]
     private Slider hpBar;
     [SerializeField]
-    private Text gameOverText;
-    [SerializeField]
     private int ZombieDamage;
     [SerializeField]
     private int GhoulDamage;
 
     private GameObject player;
+    private int maxHp;
 
     void Start()
     {
-        gameOverText.gameObject.SetActive(false);
-
         player = GameObject.FindGameObjectWithTag("Player");
 
         hpBar.minValue = 0f;
         hpBar.maxValue = hp;
+
+        maxHp = hp;
+    }
+    
+    public void InitPlayer()
+    {
+        hp = maxHp;
     }
 
     void Update()
@@ -38,7 +42,6 @@ public class Player : MonoBehaviour
         if (hp <= 0)
         {
             GameManager.Instance.isGamePlaying = false;
-            gameOverText.gameObject.SetActive(true);
             isPlayerAlive = false;
         }
     }

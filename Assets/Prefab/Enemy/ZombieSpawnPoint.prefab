@@ -181,7 +181,7 @@ MonoBehaviour:
   - 100
   - 200
   spawnWait:
-  - 5
   - 4
   - 3
+  - 2
   spawnWaitOld: 0
