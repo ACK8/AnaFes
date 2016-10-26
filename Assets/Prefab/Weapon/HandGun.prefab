@@ -19,6 +19,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010161913000}
+  - 114: {fileID: 114000014210891896}
+  - 120: {fileID: 120000011538296022}
   m_Layer: 0
   m_Name: HandGun
   m_TagString: Untagged
@@ -496,7 +498,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15eef91a265dde40b353c6efefdbe55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textMesh: {fileID: 0}
   numBullet: 0
   numBulletMax: 30
   isRelod: 0
   relodTime: 0
+--- !u!114 &114000014210891896
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011147084144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f245e3df439409e4eb9663218975f214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numMaxBullet: 30
+  maxRelodTime: 2
+  bulletObject: {fileID: 1000011658458876, guid: 06c2a99f0a9f47947a5c395f28e3f92f,
+    type: 2}
+  firePointLight: {fileID: 1000014169053906, guid: 4a50dd2cd65295846816e91943bade5c,
+    type: 2}
+  bulletGUI: {fileID: 1000013350149690}
+  muzzleFlash: {fileID: 1000011947816940, guid: a74e228fa6e77d640a655ed4596d33c9,
+    type: 2}
+  firePoint: {fileID: 4000013313935246}
+--- !u!120 &120000011538296022
+LineRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011147084144}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 0
+  m_ReflectionProbeUsage: 0
+  m_Materials:
+  - {fileID: 2100000, guid: ec342046238ff194b8cb719d4066f6ac, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Positions:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 1}
+  m_Parameters:
+    startWidth: 0.002
+    endWidth: 0.002
+    m_StartColor:
+      serializedVersion: 2
+      rgba: 4278190335
+    m_EndColor:
+      serializedVersion: 2
+      rgba: 4278190335
+  m_UseWorldSpace: 1

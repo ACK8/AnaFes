@@ -3,82 +3,61 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    SteamVR_TrackedObject trackedObjectLeft;
-    SteamVR_TrackedObject trackedObjectRight;
-
-    public GameObject leftTracked;
-    public GameObject rightTracked;
     public Transform head;
     public GameObject menuObject;
 
-    private Fire fireLeft;
-    private Fire fireRight;
+    public bool isGameStart = false;
     private GameObject currentMenu = null;
 
     void Start()
     {
-        trackedObjectLeft = leftTracked.GetComponent<SteamVR_TrackedObject>();
-        trackedObjectRight = rightTracked.GetComponent<SteamVR_TrackedObject>();
-        fireLeft = leftTracked.GetComponent<Fire>();
-        fireRight = rightTracked.GetComponent<Fire>();
     }
 
     void Update()
     {
-        var deviceLeft = SteamVR_Controller.Input((int)trackedObjectLeft.index);
-        var deviceRight = SteamVR_Controller.Input((int)trackedObjectRight.index);
+    }
 
-        bool isLeft = deviceLeft.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu);
-        bool isRight = deviceRight.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu);
-
-        //メニューボタン
-        if (isLeft || isRight)
-        { 
-            if (currentMenu == null)
-            {
-                Vector3 d = head.forward;
-                d.y = 0.0f;
-                d.Normalize();
-
-                currentMenu = Instantiate(menuObject, head.position + d * 1.5f, head.rotation) as GameObject;
-                currentMenu.transform.LookAt(head);
-            }
-            else
-            {
-                Destroy(currentMenu.gameObject);
-            }
-        }
-
-        //リスタート
-        if (fireLeft.isRestart || fireRight.isRestart)
+    public void StartingAndDelete()
+    {
+        if (currentMenu == null)
         {
-            GameManager.Instance.EnanledGameOverText(false);
-            GameManager.Instance.InitGame();
-            EnemyManager.Instance.DestroyEnemys();
+            Vector3 d = head.forward;
+            d.y = 0.0f;
+            d.Normalize();
 
-            fireLeft.isRestart = false;
-            fireRight.isRestart = false;
+            currentMenu = Instantiate(menuObject, head.position + d * 1.5f, head.rotation) as GameObject;
+            currentMenu.transform.LookAt(head);
 
-            GameManager.Instance.isGamePlaying = false;
-
-            Destroy(currentMenu.gameObject);
-        }
-
-        if (GameManager.Instance.isGamePlaying)
-        {
-            if (currentMenu != null)
+            //ゲーム中ならGameStartを消す
+            if (GameManager.Instance.isGamePlaying)
             {
                 currentMenu.transform.FindChild("GameStart").gameObject.SetActive(false);
             }
         }
-
-        //スタート
-        if (fireLeft.isGameStart || fireRight.isGameStart)
+        else
         {
             Destroy(currentMenu.gameObject);
-
-            fireLeft.isGameStart = false;
-            fireRight.isGameStart = false;
         }
+    }
+
+    public void Restart()
+    {
+        isGameStart = false;
+        GameManager.Instance.EnanledGameOverText(false);
+        GameManager.Instance.InitGame();
+        EnemyManager.Instance.DestroyEnemys();
+        GameManager.Instance.isGamePlaying = false;
+
+        Destroy(currentMenu.gameObject);
+    }
+
+    public void GameStart()
+    {
+        if (isGameStart) return;
+
+        isGameStart = true;
+        GameManager.Instance.CreateSpawnPoint();
+        GameManager.Instance.isGamePlaying = true;
+        Destroy(currentMenu.gameObject);
     }
 }
