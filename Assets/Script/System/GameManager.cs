@@ -11,8 +11,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     [SerializeField]
     private Player player;
     [SerializeField]
-    private Fire[] fire;
-    [SerializeField]
     private GameObject spawnPoint;
 
     private GameObject createdSpawnPoint;
@@ -20,6 +18,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     void Start()
     {
         gameOverText.gameObject.SetActive(false);
+        DontDestroyOnLoad(this.gameObject);
     }
 
     void Update()
@@ -48,10 +47,5 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         isGamePlaying = false;
         player.InitPlayer();
         Score.numScore = 0;
-
-        for (int i = 0; i < fire.Length; i++)
-        {
-            fire[i].InitFire();
-        }
     }
 }

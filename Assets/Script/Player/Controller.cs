@@ -3,48 +3,60 @@ using System.Collections;
 
 public class Controller : MonoBehaviour
 {
-	private LineRenderer line;
-	private RaycastHit hit;
-	private Ray ray;
-    SteamVR_TrackedObject trackedObject;
+    public GameObject gunObject;
+    public GameObject menuObject;
 
-    public GameObject bullet;
-    public GameObject firingPorts;
+    private SteamVR_TrackedObject trackedObject;
+    private GameObject currentGun;
+    private Gun gunComponent;
+    private Menu menuComponent;
 
     void Start()
     {
-		line = GetComponent<LineRenderer> ();
+        currentGun = Instantiate(gunObject);
+        currentGun.transform.SetParent(transform);
+
+        gunComponent = currentGun.GetComponent<Gun>();
+
+        menuComponent = menuObject.GetComponent<Menu>();
 
         trackedObject = GetComponent<SteamVR_TrackedObject>();
     }
 
     void Update()
-	{
-		var device = SteamVR_Controller.Input((int) trackedObject.index);
+    {
+        var device = SteamVR_Controller.Input((int)trackedObject.index);
 
-		ray.direction = firingPorts.transform.forward;
-		ray.origin = firingPorts.transform.position;
-
-		line.SetPosition (0, ray.origin);
-		line.SetPosition (1, ray.GetPoint(200));
-
-        line.enabled = false;
-
+        //弾を打つ
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
         {
-			device.TriggerHapticPulse (100);
-            line.enabled = true;
-
-            GameObject bulletObject = Instantiate(bullet, firingPorts.transform.position, firingPorts.transform.rotation) as GameObject;
-
-            bulletObject.GetComponent<Bullet>().direction = firingPorts.transform.forward;
-
-            /*
-            if (Physics.Raycast(ray, out hit, 200.0f))
+            if(gunComponent != null)
             {
-                Instantiate(cube, hit.point, hit.transform.rotation);
+                device.TriggerHapticPulse(3000); //振動
+                string tag = gunComponent.Fire();
+
+                if(tag == "GameStart")
+                {
+                    menuComponent.GameStart();
+                }
+
+                if(tag == "Restart")
+                {
+                    menuComponent.Restart();
+                }
             }
-            */
+        }
+
+        //弾をリロード
+        if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
+        {
+            gunComponent.Relod();
+        }
+
+        //メニュー起動
+        if(device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
+        {
+            menuComponent.StartingAndDelete();
         }
     }
 }
