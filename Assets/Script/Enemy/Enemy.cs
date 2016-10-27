@@ -117,6 +117,14 @@ public class Enemy : MonoBehaviour
             //Hit
             anim.SetTrigger("Hit");
             hp -= damageValue;
+
+            int rand = Random.Range(0, 3);
+            if (rand == 0)
+                AudioManager.Instance.PlaySE("Damage_1");
+            else if (rand == 1)
+                AudioManager.Instance.PlaySE("Damage_2");
+            else
+                AudioManager.Instance.PlaySE("Blood");
         }
     }
 }

@@ -4,17 +4,27 @@ using System.Collections;
 
 public class TimeLimit : MonoBehaviour
 {
-    private Text textMesh;
+    public uint maxTime;
+    public static float time = 0;
 
-    public static uint time = 0;
+    private Slider timeLeftBar;
 
     void Start()
     {
-        textMesh = GetComponent<Text>();
+        timeLeftBar = GetComponent<Slider>();
+        timeLeftBar.maxValue = maxTime;
+        time = maxTime;
     }
 
     void Update()
     {
-        textMesh.text = "Time: " + time;
+        if (0 < time)
+        {
+            time -= Time.deltaTime;
+        }
+
+        time = Mathf.Clamp(time, 0, maxTime);
+
+        timeLeftBar.value = time;
     }
 }

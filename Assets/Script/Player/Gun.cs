@@ -57,7 +57,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    //弾を打つ
+    //弾を撃つ
     public string Fire()
     {
         if (isRelod) return "Reloading";
@@ -67,6 +67,8 @@ public class Gun : MonoBehaviour
             Instantiate(firePointLight, firePoint.position, firePoint.rotation); //発砲時ポイントライト生成  
             GameObject flash = Instantiate(muzzleFlash, firePoint.position, firePoint.rotation) as GameObject; //発砲時パーティクル生成
             flash.transform.SetParent(transform);
+
+            AudioManager.Instance.PlaySE("HandgunFire");
 
             numBullet -= 1; //弾減らす
 
@@ -113,6 +115,7 @@ public class Gun : MonoBehaviour
     //弾をリロード
     public void Relod()
     {
+        AudioManager.Instance.PlaySE("Reload");
         if (isRelod) return;
 
         if (numBullet < numMaxBullet)
