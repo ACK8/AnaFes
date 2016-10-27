@@ -127,4 +127,26 @@ public class Enemy : MonoBehaviour
                 AudioManager.Instance.PlaySE("Blood");
         }
     }
+
+    public void HitCutlery(Collision collision)
+    {
+        GameObject blood = Instantiate(bloodEffect, collision.transform.position, bloodEffect.transform.rotation) as GameObject;
+        blood.transform.SetParent(this.gameObject.transform);
+        Destroy(blood.gameObject, 0.5f);
+
+        if (isAlive)
+        {
+            //Hit
+            anim.SetTrigger("Hit");
+            hp -= damageValue;
+
+            int rand = Random.Range(0, 3);
+            if (rand == 0)
+                AudioManager.Instance.PlaySE("Damage_1");
+            else if (rand == 1)
+                AudioManager.Instance.PlaySE("Damage_2");
+            else
+                AudioManager.Instance.PlaySE("Blood");
+        }
+    }
 }

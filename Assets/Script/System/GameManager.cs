@@ -55,5 +55,6 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         isGamePlaying = false;
         player.InitPlayer();
         Score.numScore = 0;
+        TimeLimit.Init();
     }
 }

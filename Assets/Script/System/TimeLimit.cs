@@ -20,18 +20,23 @@ public class TimeLimit : MonoBehaviour
 
     void Update()
     {
-        if (0 < time)
+        if (0 < time && GameManager.Instance.isGamePlaying)
         {
             time -= Time.deltaTime;
         }
 
         time = Mathf.Clamp(time, 0, maxTime);
 
-        if(time <= 0)
+        if (time <= 0)
         {
             GameManager.Instance.isTimeOver = true;
         }
 
         timeLeftBar.value = time;
+    }
+
+    public static void Init()
+    {
+        time = 180;
     }
 }

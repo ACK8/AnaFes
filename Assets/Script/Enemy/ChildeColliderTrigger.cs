@@ -9,4 +9,9 @@ public class ChildeColliderTrigger : MonoBehaviour
     {
         enemy.HitRaycast(hit);
     }
+
+    public void HitCutlery(Collision hit)
+    {
+        enemy.HitCutlery(hit);
+    }
 }
