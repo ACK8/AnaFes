@@ -47,6 +47,7 @@ public class Menu : MonoBehaviour
         GameManager.Instance.InitGame();
         EnemyManager.Instance.DestroyEnemys();
         GameManager.Instance.isGamePlaying = false;
+        GameManager.Instance.isTimeOver = false;
 
         Destroy(currentMenu.gameObject);
     }
@@ -58,6 +59,7 @@ public class Menu : MonoBehaviour
         isGameStart = true;
         GameManager.Instance.CreateSpawnPoint();
         GameManager.Instance.isGamePlaying = true;
+        GameManager.Instance.isTimeOver = false;
         Destroy(currentMenu.gameObject);
     }
 }

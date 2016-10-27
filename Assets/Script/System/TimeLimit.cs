@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class TimeLimit : MonoBehaviour
 {
+    [SerializeField]
+    private Text timeOverText;
+
     public uint maxTime;
     public static float time = 0;
 
@@ -24,6 +26,11 @@ public class TimeLimit : MonoBehaviour
         }
 
         time = Mathf.Clamp(time, 0, maxTime);
+
+        if(time <= 0)
+        {
+            GameManager.Instance.isTimeOver = true;
+        }
 
         timeLeftBar.value = time;
     }

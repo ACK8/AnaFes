@@ -5,9 +5,10 @@ using UnityEngine.UI;
 public class GameManager : SingletonMonoBehaviour<GameManager>
 {
     public bool isGamePlaying = false;
+    public bool isTimeOver = false;
 
     [SerializeField]
-    private Text gameOverText;
+    private Text gameText;
     [SerializeField]
     private Player player;
     [SerializeField]
@@ -17,7 +18,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     void Start()
     {
-        gameOverText.gameObject.SetActive(false);
+        gameText.gameObject.SetActive(false);
         DontDestroyOnLoad(this.gameObject);
     }
 
@@ -25,13 +26,20 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     {
         if (player.hp <= 0)
         {
-            gameOverText.gameObject.SetActive(true);
+            gameText.text = "GameOver!";
+            gameText.gameObject.SetActive(true);
+        }
+
+        if (TimeLimit.time <= 0)
+        {
+            gameText.text = "Time Over!";
+            gameText.gameObject.SetActive(true);
         }
     }
 
     public void EnanledGameOverText(bool f)
     {
-        gameOverText.gameObject.SetActive(f);
+        gameText.gameObject.SetActive(f);
     }
 
     public void CreateSpawnPoint()

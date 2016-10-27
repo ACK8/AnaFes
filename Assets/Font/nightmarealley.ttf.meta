@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7f3bb9a8bc3c10a4a8836761ddd37f53
-timeCreated: 1477274717
+guid: 84b5eebe72eb2774b8ca3612286c7754
+timeCreated: 1477543968
 licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
@@ -10,7 +10,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Green Fuz
+  - Nightmare Alley
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

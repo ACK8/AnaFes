@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
 {
+    [HideInInspector]
     public List<GameObject> spawnEnemyList;
 
     public void DestroyEnemys()
