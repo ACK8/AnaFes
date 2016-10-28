@@ -15,8 +15,5 @@ public class EnemyManager : SingletonMonoBehaviour<EnemyManager>
         }
         spawnEnemyList.Clear();
         spawnEnemyList = new List<GameObject>();
-
-
-
     }
 }

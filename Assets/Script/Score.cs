@@ -3,17 +3,24 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-    private Text textMesh;
+    private Text scoreText;
 
-    public static uint numScore = 0; 
+    public static uint numScore = 0;
 
-	void Start ()
+    void Start()
     {
-        textMesh = GetComponent<Text>();
+        scoreText = GetComponent<Text>();
     }
 
-    void Update ()
+    void Update()
     {
-        textMesh.text = "Score: " + numScore;
+        if (GameManager.Instance.isGameOver || GameManager.Instance.isTimeOver)
+        {
+            scoreText.text = "Score: " + numScore;
+        }
+        else
+        {
+            scoreText.text = "";
+        }
     }
 }

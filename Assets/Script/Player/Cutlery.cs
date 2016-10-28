@@ -3,9 +3,11 @@ using System.Collections;
 
 public class Cutlery : MonoBehaviour
 {
+    BoxCollider boxCollider;
+
 	void Start ()
     {
-	
+        boxCollider = GetComponent<BoxCollider>();
 	}
 	
 	void Update ()
@@ -15,8 +17,6 @@ public class Cutlery : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Axe");
-
         if(collision.gameObject.tag == "Zombie")
         {
             collision.gameObject.GetComponent<ChildeColliderTrigger>().HitCutlery(collision);
@@ -26,5 +26,15 @@ public class Cutlery : MonoBehaviour
         {
             collision.gameObject.GetComponent<ChildeColliderTrigger>().HitCutlery(collision);
         }
+    }
+
+    public void Attack()
+    {
+        boxCollider.enabled = true;
+    }
+
+    public void NoAttack()
+    {
+        boxCollider.enabled = false;
     }
 }

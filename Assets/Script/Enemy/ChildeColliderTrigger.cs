@@ -7,6 +7,7 @@ public class ChildeColliderTrigger : MonoBehaviour
 
     public void HitRaycast(RaycastHit hit)
     {
+        this.gameObject.tag
         enemy.HitRaycast(hit);
     }
 

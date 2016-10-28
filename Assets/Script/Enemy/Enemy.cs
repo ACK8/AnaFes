@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.isGamePlaying)
+        if (!GameManager.Instance.isGamePlaying || GameManager.Instance.isTimeOver)
         {
             navMesh.speed = 0f;
             anim.SetFloat("Speed", 0);

@@ -58,7 +58,8 @@ public class Controller : MonoBehaviour
                 break;
 
             case WeaponType.eAxe:
-                Cutlery();
+
+                Cutlery(device.angularVelocity);
                 break;
         }
 
@@ -132,8 +133,18 @@ public class Controller : MonoBehaviour
         }
     }
 
-    void Cutlery()
+    void Cutlery(Vector3 angularVelocity)
     {
+        float max = 5.0f;
 
+        if(angularVelocity.x > max || angularVelocity.y > max || angularVelocity.z > max ||
+            angularVelocity.x < -max || angularVelocity.y < -max || angularVelocity.z < -max)
+        {
+            currentCutlery.GetComponent<Cutlery>().Attack();
+        }
+        else
+        {
+            currentCutlery.GetComponent<Cutlery>().NoAttack();
+        }
     }
 }

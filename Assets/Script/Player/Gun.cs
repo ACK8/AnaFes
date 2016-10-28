@@ -55,6 +55,11 @@ public class Gun : MonoBehaviour
             bulletTextMesh.text = string.Format("{0}", numBullet);
             bulletTextMesh.color = new Color(0.0f, 1.0f, 0.0f);
         }
+
+        if(numBullet <= 0)
+        {
+            Relod();
+        }
     }
 
     //弾を撃つ

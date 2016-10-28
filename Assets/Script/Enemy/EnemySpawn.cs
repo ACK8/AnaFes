@@ -29,6 +29,8 @@ public class EnemySpawn : MonoBehaviour
 
     void Update()
     {
+        if (!GameManager.Instance.isGamePlaying || GameManager.Instance.isTimeOver) return;
+
         time += Time.deltaTime;
                 
         //Debug.Log(Time.realtimeSinceStartup);

@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     public void InitPlayer()
     {
         hp = maxHp;
+        hpBar.value = maxHp;
     }
 
     void Update()
@@ -36,8 +37,7 @@ public class Player : MonoBehaviour
         this.transform.position = new Vector3(player.transform.position.x, 0f, player.transform.position.z);
         this.transform.rotation = Quaternion.identity;
 
-        if (isPlayerAlive)
-            hpBar.value = hp;
+        hpBar.value = hp;
 
         if (hp <= 0)
         {

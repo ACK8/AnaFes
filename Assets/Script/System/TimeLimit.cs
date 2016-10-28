@@ -3,9 +3,6 @@ using UnityEngine.UI;
 
 public class TimeLimit : MonoBehaviour
 {
-    [SerializeField]
-    private Text timeOverText;
-
     public uint maxTime;
     public static float time = 0;
 
