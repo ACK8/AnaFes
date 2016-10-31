@@ -4,7 +4,9 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public int hp;
+    public float sreenBloodMaxTime;
     public bool isPlayerAlive = true;
+    public GameObject sreenBlood;
 
     [SerializeField]
     private Slider hpBar;
@@ -15,6 +17,7 @@ public class Player : MonoBehaviour
 
     private GameObject player;
     private int maxHp;
+    private float sreenBloodTime;
 
     void Start()
     {
@@ -24,6 +27,7 @@ public class Player : MonoBehaviour
         hpBar.maxValue = hp;
 
         maxHp = hp;
+        sreenBloodTime = sreenBloodMaxTime;
     }
     
     public void InitPlayer()
@@ -44,6 +48,16 @@ public class Player : MonoBehaviour
             GameManager.Instance.isGamePlaying = false;
             isPlayerAlive = false;
         }
+
+        if(sreenBlood.activeSelf)
+        {
+            sreenBloodTime -= Time.deltaTime;
+
+            if(sreenBloodTime <= 0)
+            {
+                sreenBlood.SetActive(false);
+            }
+        }
     }
 
     void OnTriggerEnter(Collider hit)
@@ -52,12 +66,18 @@ public class Player : MonoBehaviour
         {
             if (0 < hp)
                 hp -= ZombieDamage;
+
+            sreenBlood.SetActive(true);
+            sreenBloodTime = sreenBloodMaxTime;
         }
 
         if (hit.tag == "GhoulAttack")
         {
             if (0 < hp)
                 hp -= GhoulDamage;
+
+            sreenBlood.SetActive(true);
+            sreenBloodTime = sreenBloodMaxTime;
         }
     }
 }

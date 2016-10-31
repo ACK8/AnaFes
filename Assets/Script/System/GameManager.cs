@@ -28,11 +28,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         if (player.hp <= 0)
         {
             gameText.text = "Game Over!";
+            gameText.color = Color.red;
         }
 
         if (_isTimeOver)
         {
             gameText.text = "Game Clear!";
+            gameText.color = Color.green;
         }
     }
 

@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
     public GameObject firePointLight;
     public GameObject bulletGUI;
     public GameObject muzzleFlash;
+    public GameObject layPoint;
     public Transform firePoint;
 
     private bool isRelod = false;
@@ -34,6 +35,12 @@ public class Gun : MonoBehaviour
 
         line.SetPosition(0, ray.origin);
         line.SetPosition(1, ray.GetPoint(200));
+
+        if (Physics.Raycast(ray, out hit, 200.0f))
+        {
+            layPoint.transform.position = hit.point;
+            line.SetPosition(1, hit.point);
+        }
 
         //リロード中
         if (isRelod)
@@ -106,21 +113,18 @@ public class Gun : MonoBehaviour
                 //ゲームスタートに当たった処理
                 if (hit.transform.tag == "GameStart")
                 {
-                    Debug.Log("GameStartをクリック");
                     return "GameStart";
                 }
 
                 //リスタートに当たった処理
                 if (hit.transform.tag == "Restart")
                 {
-                    Debug.Log("Restartをクリック");
                     return "Restart";
                 }
 
                 //ゲーム終了に当たった処理
                 if (hit.transform.tag == "QuitGame")
                 {
-                    Debug.Log("QuitGameをクリック");
                     Application.Quit();
                 }
             }
