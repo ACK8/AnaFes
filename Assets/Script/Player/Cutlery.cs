@@ -19,12 +19,22 @@ public class Cutlery : MonoBehaviour
     {
         if(collision.gameObject.tag == "Zombie")
         {
-            collision.gameObject.GetComponent<ChildeColliderTrigger>().HitCutlery(collision);
+            collision.gameObject.GetComponent<ChildeColliderTrigger>().HitCutlery(collision, 1);
+        }
+
+        if (collision.gameObject.tag == "ZombieHead")
+        {
+            collision.gameObject.GetComponent<ChildeColliderTrigger>().HitCutlery(collision, 3);
         }
 
         if (collision.gameObject.tag == "Ghoul")
         {
-            collision.gameObject.GetComponent<ChildeColliderTrigger>().HitCutlery(collision);
+            collision.gameObject.GetComponent<ChildeColliderTrigger>().HitCutlery(collision, 1);
+        }
+
+        if (collision.gameObject.tag == "GhoulHead")
+        {
+            collision.gameObject.GetComponent<ChildeColliderTrigger>().HitCutlery(collision, 3);
         }
     }
 

@@ -267,7 +267,7 @@ GameObject:
   - 114: {fileID: 114000014152264280}
   m_Layer: 8
   m_Name: Bip01 HeadNub
-  m_TagString: Zombie
+  m_TagString: ZombieHead
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

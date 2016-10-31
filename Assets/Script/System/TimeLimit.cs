@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class TimeLimit : MonoBehaviour
 {
     public uint maxTime;
-    public static float time = 0;
+    public static float time = 0.0f;
 
     private Slider timeLeftBar;
 
