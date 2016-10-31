@@ -82,13 +82,25 @@ public class Gun : MonoBehaviour
                 //ゾンビに当たった処理
                 if (hit.transform.tag == "Zombie")
                 {
-                    hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit);
+                    hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit, 1);
+                }
+
+                //ゾンビに当たった処理（頭）
+                if (hit.transform.tag == "ZombieHead")
+                {
+                    hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit, 3);
                 }
 
                 //グールに当たった処理
                 if (hit.transform.tag == "Ghoul")
                 {
-                    hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit);
+                    hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit, 1);
+                }
+
+                //グールに当たった処理(頭)
+                if (hit.transform.tag == "GhoulHead")
+                {
+                    hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit, 3);
                 }
 
                 //ゲームスタートに当たった処理

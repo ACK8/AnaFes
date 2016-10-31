@@ -13,6 +13,8 @@ public class Controller : MonoBehaviour
     public GameObject gunObject;
     public GameObject cutleryObject;
     public GameObject menuObject;
+    public float touchPadValue = 0.1f;
+    public float cutleryValue = 3.0f;
 
     private SteamVR_TrackedObject trackedObject;
     private GameObject currentGun;
@@ -72,38 +74,32 @@ public class Controller : MonoBehaviour
         //武器変更
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
         {
-            Debug.Log("タッチパッドをクリックした");
-
             Vector2 position = device.GetAxis();
 
-            //右
-            if (position.x >= 0.1f)
+            if (position.x >= touchPadValue) //右
             {
                 weaponType = WeaponType.eHandGun;
                 currentGun.SetActive(true);
                 currentCutlery.SetActive(false);
-                Debug.Log("右をクリックした");
             }
-            else if (position.x <= -0.1f) //左
+            else if (position.x <= -touchPadValue) //左
             {
                 weaponType = WeaponType.eAxe;
                 currentGun.SetActive(false);
                 currentCutlery.SetActive(true);
-                Debug.Log("左をクリックした");
             }
-            else if (position.y >= 0.5f) //上
+            else if (position.y >= touchPadValue) //上
             {
 
-                Debug.Log("上をクリックした");
             }
-            else if (position.y <= -0.5f)
+            else if (position.y <= -touchPadValue) //下
             {
 
-                Debug.Log("下をクリックした");
             }
         }
     }
 
+    //銃の処理
     void Gun(SteamVR_Controller.Device device)
     {
         //弾を打つ
@@ -133,12 +129,11 @@ public class Controller : MonoBehaviour
         }
     }
 
+    //刃物処理
     void Cutlery(Vector3 angularVelocity)
     {
-        float max = 5.0f;
-
-        if(angularVelocity.x > max || angularVelocity.y > max || angularVelocity.z > max ||
-            angularVelocity.x < -max || angularVelocity.y < -max || angularVelocity.z < -max)
+        if(angularVelocity.x > cutleryValue || angularVelocity.y > cutleryValue || angularVelocity.z > cutleryValue ||
+            angularVelocity.x < -cutleryValue || angularVelocity.y < -cutleryValue || angularVelocity.z < -cutleryValue)
         {
             currentCutlery.GetComponent<Cutlery>().Attack();
         }

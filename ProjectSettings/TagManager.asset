@@ -12,6 +12,8 @@ TagManager:
   - GameStart
   - Restart
   - QuitGame
+  - ZombieHead
+  - GhoulHead
   layers:
   - Default
   - TransparentFX

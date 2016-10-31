@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     private float moveSpeed;
     private bool isAlive = true;
     private bool isAttack = false;
+    private bool isHeadDeath = false;
 
     void Start()
     {
@@ -101,12 +102,13 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger("Death");
             isAlive = false;
             navMesh.Stop();
-            Score.numScore += 100;
+            if(isHeadDeath) Score.numScore += 500;
+            else Score.numScore += 100;
             Destroy(this.gameObject, 2f);
         }
     }
 
-    public void HitRaycast(RaycastHit hit)
+    public void HitRaycast(RaycastHit hit, int damageMagnification)
     {
         GameObject blood = Instantiate(bloodEffect, hit.transform.position, bloodEffect.transform.rotation) as GameObject;
         blood.transform.SetParent(this.gameObject.transform);
@@ -116,7 +118,9 @@ public class Enemy : MonoBehaviour
         {
             //Hit
             anim.SetTrigger("Hit");
-            hp -= damageValue;
+            hp -= damageValue * damageMagnification;
+
+            if(damageMagnification >= 3) isHeadDeath = true;
 
             int rand = Random.Range(0, 3);
             if (rand == 0)
@@ -128,7 +132,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void HitCutlery(Collision collision)
+    public void HitCutlery(Collision collision, int damageMagnification)
     {
         GameObject blood = Instantiate(bloodEffect, collision.transform.position, bloodEffect.transform.rotation) as GameObject;
         blood.transform.SetParent(this.gameObject.transform);
@@ -138,7 +142,7 @@ public class Enemy : MonoBehaviour
         {
             //Hit
             anim.SetTrigger("Hit");
-            hp -= damageValue;
+            hp -= damageValue * damageMagnification;
 
             int rand = Random.Range(0, 3);
             if (rand == 0)

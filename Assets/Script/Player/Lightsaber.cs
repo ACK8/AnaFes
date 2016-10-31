@@ -53,11 +53,11 @@ public class Lightsaber : MonoBehaviour
         {
             if (hit.transform.tag == "Zombie")
             {
-                hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit);
+                hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit, 1);
             }
             if (hit.transform.tag == "Ghoul")
             {
-                hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit);
+                hit.collider.GetComponent<ChildeColliderTrigger>().HitRaycast(hit, 1);
             }
         }
     }
