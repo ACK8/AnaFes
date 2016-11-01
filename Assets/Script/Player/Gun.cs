@@ -9,7 +9,7 @@ public class Gun : MonoBehaviour
     public GameObject firePointLight;
     public GameObject bulletGUI;
     public GameObject muzzleFlash;
-    public GameObject layPoint;
+    public GameObject rayPoint;
     public Transform firePoint;
 
     private bool isRelod = false;
@@ -36,9 +36,12 @@ public class Gun : MonoBehaviour
         line.SetPosition(0, ray.origin);
         line.SetPosition(1, ray.GetPoint(200));
 
+        rayPoint.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+
+        //ポイント表示位置
         if (Physics.Raycast(ray, out hit, 200.0f))
         {
-            layPoint.transform.position = hit.point;
+            rayPoint.transform.position = hit.point;
             line.SetPosition(1, hit.point);
         }
 

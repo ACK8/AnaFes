@@ -590,7 +590,7 @@ MonoBehaviour:
   bulletGUI: {fileID: 1000013350149690}
   muzzleFlash: {fileID: 1000011947816940, guid: a74e228fa6e77d640a655ed4596d33c9,
     type: 2}
-  layPoint: {fileID: 1000010813239834}
+  rayPoint: {fileID: 1000010813239834}
   firePoint: {fileID: 4000013313935246}
 --- !u!120 &120000011538296022
 LineRenderer:
