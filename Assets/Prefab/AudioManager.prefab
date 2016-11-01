@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000011937930498}
   - 114: {fileID: 114000014266269976}
-  - 82: {fileID: 82000011845547602}
   - 82: {fileID: 82000010450029000}
+  - 82: {fileID: 82000011845547602}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -201,5 +201,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b59a4fd7585db42931c58f66a91936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSource: {fileID: 82000011845547602}
-  seSource: {fileID: 82000010450029000}
+  bgmSource: {fileID: 82000010450029000}
+  seSource: {fileID: 82000011845547602}

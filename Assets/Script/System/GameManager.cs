@@ -29,12 +29,16 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
         {
             gameText.text = "Game Over!";
             gameText.color = Color.red;
+
+            AudioManager.Instance.PlaySE("GameOver");
         }
 
         if (_isTimeOver)
         {
             gameText.text = "Game Clear!";
             gameText.color = Color.green;
+
+            AudioManager.Instance.PlaySE("GameClear");
         }
     }
 

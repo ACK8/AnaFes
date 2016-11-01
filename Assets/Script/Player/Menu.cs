@@ -57,6 +57,7 @@ public class Menu : MonoBehaviour
         isGameStart = true;
         GameManager.Instance.CreateSpawnPoint();
         GameManager.Instance.isGamePlaying = true;
+        AudioManager.Instance.PlaySE("GameStart");
         Destroy(currentMenu.gameObject);
     }
 }
