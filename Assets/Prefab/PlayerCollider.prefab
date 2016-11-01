@@ -68,10 +68,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caac8096965dcdd44918c137e262dd7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 200
+  hp: 300
+  sreenBloodMaxTime: 3
   isPlayerAlive: 1
+  sreenBlood: {fileID: 0}
   hpBar: {fileID: 0}
-  gameOverText: {fileID: 0}
   ZombieDamage: 10
   GhoulDamage: 10
 --- !u!136 &136000012360489118

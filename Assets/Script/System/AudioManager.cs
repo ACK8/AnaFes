@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class AudioManager : SingletonMonoBehaviour<AudioManager>
 {
     [SerializeField]
-    private AudioSource bgmSource, seSource;
+    private AudioSource bgmSource;
     private Dictionary<string, AudioClip> bgmDic, seDic;
 
 
@@ -30,7 +30,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         }
     }
 
-    public void PlayBGM(string fileName, AudioSource bgmSource, float volume = 1f, float delay = 0f)
+    public void PlayBGM(string fileName, float volume = 1f, float delay = 0f)
     {
         if (!bgmDic.ContainsKey(fileName))
         {
@@ -44,6 +44,11 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
 
         bgmSource.clip = bgmDic[fileName];
         bgmSource.PlayDelayed(delay);
+    }
+
+    public void StopBGM()
+    {
+        bgmSource.Stop();
     }
 
     public void PlaySE(string fileName, AudioSource seSource, float volume = 1f)

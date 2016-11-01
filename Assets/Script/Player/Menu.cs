@@ -3,16 +3,23 @@ using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+    [SerializeField]
+    private AudioSource seSource;
+
     public Transform head;
     public GameObject menuObject;
-    public Text gameText;
+    public GameObject gameTextObj;
+
 
     public bool isGameStart = false;
     private GameObject currentMenu = null;
-    private AudioSource menuAudio;
+    private Text gameText;
+    private GameText gameTextScript;
 
     void Start()
     {
+        gameText = gameTextObj.GetComponent<Text>();
+        gameTextScript = gameTextObj.GetComponent<GameText>();
     }
 
     void Update()
@@ -46,10 +53,15 @@ public class Menu : MonoBehaviour
     {
         isGameStart = false;
         gameText.text = "";
+        gameTextScript.playingSound = false;
         GameManager.Instance.InitGame();
         EnemyManager.Instance.DestroyEnemys();
+        AudioManager.Instance.StopBGM();
 
-        Destroy(currentMenu.gameObject);
+        if (currentMenu != null)
+        {
+            Destroy(currentMenu.gameObject);
+        }
     }
 
     public void GameStart()
@@ -59,7 +71,12 @@ public class Menu : MonoBehaviour
         isGameStart = true;
         GameManager.Instance.CreateSpawnPoint();
         GameManager.Instance.isGamePlaying = true;
-        AudioManager.Instance.PlaySE("GameStart", menuAudio);
-        Destroy(currentMenu.gameObject);
+        AudioManager.Instance.PlaySE("GameStart", seSource);
+        AudioManager.Instance.PlayBGM("BGM_1", 0.6f, 5.0f);
+
+        if(currentMenu != null)
+        {
+            Destroy(currentMenu.gameObject);
+        }
     }
 }

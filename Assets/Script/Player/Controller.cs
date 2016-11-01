@@ -52,6 +52,9 @@ public class Controller : MonoBehaviour
     {
         var device = SteamVR_Controller.Input((int)trackedObject.index);
 
+        Gun(device);
+
+        /*
         //持ってる武器の種類事
         switch (weaponType)
         {
@@ -64,6 +67,7 @@ public class Controller : MonoBehaviour
                 Cutlery(device.angularVelocity);
                 break;
         }
+        */
 
         //メニュー起動
         if(device.GetPressDown(SteamVR_Controller.ButtonMask.ApplicationMenu))
@@ -72,6 +76,7 @@ public class Controller : MonoBehaviour
         }
 
         //武器変更
+        /*
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
         {
             Vector2 position = device.GetAxis();
@@ -97,6 +102,7 @@ public class Controller : MonoBehaviour
 
             }
         }
+        */
     }
 
     //銃の処理
@@ -122,11 +128,18 @@ public class Controller : MonoBehaviour
             }
         }
 
+        if(device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad))
+        {
+            gunComponent.Relod();
+        }
+
+        /*
         //弾をリロード
         if (device.GetPressDown(SteamVR_Controller.ButtonMask.Grip))
         {
             gunComponent.Relod();
         }
+        */
     }
 
     //刃物処理
