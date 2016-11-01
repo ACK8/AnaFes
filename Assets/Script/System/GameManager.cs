@@ -7,9 +7,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     private bool _isGamePlaying = false;
     private bool _isGameOver = false;
     private bool _isTimeOver = false;
-
-    [SerializeField]
-    private Text gameText;
+    
     [SerializeField]
     private Player player;
     [SerializeField]
@@ -19,34 +17,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
 
     void Start()
     {
-        gameText.text = "";
         DontDestroyOnLoad(this.gameObject);
     }
-
-    void Update()
-    {
-        if (player.hp <= 0)
-        {
-            gameText.text = "Game Over!";
-            gameText.color = Color.red;
-
-            AudioManager.Instance.PlaySE("GameOver");
-        }
-
-        if (_isTimeOver)
-        {
-            gameText.text = "Game Clear!";
-            gameText.color = Color.green;
-
-            AudioManager.Instance.PlaySE("GameClear");
-        }
-    }
-
-    public void EnanledGameText()
-    {
-        gameText.text = "";
-    }
-
+    
     public void CreateSpawnPoint()
     {
         createdSpawnPoint = Instantiate(spawnPoint);

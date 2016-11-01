@@ -18,12 +18,14 @@ public class Gun : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
     private LineRenderer line;
+    private AudioSource gunAudio;
     private TextMesh bulletTextMesh;
 
     void Start ()
     {
         numBullet = numMaxBullet;
         line = GetComponent<LineRenderer>();
+        gunAudio = GetComponent<AudioSource>();
 
         bulletTextMesh = bulletGUI.GetComponent<TextMesh>();
     }
@@ -83,7 +85,7 @@ public class Gun : MonoBehaviour
             GameObject flash = Instantiate(muzzleFlash, firePoint.position, firePoint.rotation) as GameObject; //発砲時パーティクル生成
             flash.transform.SetParent(transform);
 
-            AudioManager.Instance.PlaySE("HandgunFire");
+            AudioManager.Instance.PlaySE("HandgunFire", gunAudio);
 
             numBullet -= 1; //弾減らす
 
@@ -139,7 +141,7 @@ public class Gun : MonoBehaviour
     //弾をリロード
     public void Relod()
     {
-        AudioManager.Instance.PlaySE("Reload");
+        AudioManager.Instance.PlaySE("Reload", gunAudio);
         if (isRelod) return;
 
         if (numBullet < numMaxBullet)

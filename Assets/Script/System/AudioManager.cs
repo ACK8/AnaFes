@@ -30,7 +30,7 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         }
     }
 
-    public void PlayBGM(string fileName, float volume = 1f)
+    public void PlayBGM(string fileName, AudioSource bgmSource, float volume = 1f, float delay = 0f)
     {
         if (!bgmDic.ContainsKey(fileName))
         {
@@ -41,11 +41,12 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         volume = Mathf.Clamp(volume, 0f, 1f);
         bgmSource.volume = volume;
 
+
         bgmSource.clip = bgmDic[fileName];
-        bgmSource.Play();
+        bgmSource.PlayDelayed(delay);
     }
 
-    public void PlaySE(string fileName, float volume = 1f)
+    public void PlaySE(string fileName, AudioSource seSource, float volume = 1f)
     {
         if (!seDic.ContainsKey(fileName))
         {
@@ -57,17 +58,5 @@ public class AudioManager : SingletonMonoBehaviour<AudioManager>
         seSource.volume = volume;
 
         seSource.PlayOneShot(seDic[fileName]);
-    }
-
-    public void SEVolume(float volume)
-    {
-        volume = Mathf.Clamp(volume, 0f, 1f);
-        seSource.volume = volume;
-    }
-
-    public void BGMVolume(float volume)
-    {
-        volume = Mathf.Clamp(volume, 0f, 1f);
-        bgmSource.volume = volume;
     }
 }

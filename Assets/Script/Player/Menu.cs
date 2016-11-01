@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
     public Transform head;
     public GameObject menuObject;
+    public Text gameText;
 
     public bool isGameStart = false;
     private GameObject currentMenu = null;
+    private AudioSource menuAudio;
 
     void Start()
     {
@@ -43,7 +45,7 @@ public class Menu : MonoBehaviour
     public void Restart()
     {
         isGameStart = false;
-        GameManager.Instance.EnanledGameText();
+        gameText.text = "";
         GameManager.Instance.InitGame();
         EnemyManager.Instance.DestroyEnemys();
 
@@ -57,7 +59,7 @@ public class Menu : MonoBehaviour
         isGameStart = true;
         GameManager.Instance.CreateSpawnPoint();
         GameManager.Instance.isGamePlaying = true;
-        AudioManager.Instance.PlaySE("GameStart");
+        AudioManager.Instance.PlaySE("GameStart", menuAudio);
         Destroy(currentMenu.gameObject);
     }
 }

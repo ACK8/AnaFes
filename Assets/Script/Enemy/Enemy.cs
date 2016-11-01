@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject target;
     private CapsuleCollider handCollider;
+    private AudioSource enemyAudioSource;
     private NavMeshAgent navMesh;
     private Animator anim;
     private float moveSpeed;
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour
         navMesh = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         handCollider = GetComponent<CapsuleCollider>();
+        enemyAudioSource = GetComponent<AudioSource>();
         target = GameObject.FindGameObjectWithTag("Player");
 
         moveSpeed = Random.Range(1f, 1.4f);
@@ -124,11 +126,11 @@ public class Enemy : MonoBehaviour
 
             int rand = Random.Range(0, 3);
             if (rand == 0)
-                AudioManager.Instance.PlaySE("Damage_1");
+                AudioManager.Instance.PlaySE("Damage_1", enemyAudioSource);
             else if (rand == 1)
-                AudioManager.Instance.PlaySE("Damage_2");
+                AudioManager.Instance.PlaySE("Damage_2", enemyAudioSource);
             else
-                AudioManager.Instance.PlaySE("Blood");
+                AudioManager.Instance.PlaySE("Blood", enemyAudioSource);
         }
     }
 
@@ -146,11 +148,11 @@ public class Enemy : MonoBehaviour
 
             int rand = Random.Range(0, 3);
             if (rand == 0)
-                AudioManager.Instance.PlaySE("Damage_1");
+                AudioManager.Instance.PlaySE("Damage_1", enemyAudioSource);
             else if (rand == 1)
-                AudioManager.Instance.PlaySE("Damage_2");
+                AudioManager.Instance.PlaySE("Damage_2", enemyAudioSource);
             else
-                AudioManager.Instance.PlaySE("Blood");
+                AudioManager.Instance.PlaySE("Blood", enemyAudioSource);
         }
     }
 }
