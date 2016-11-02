@@ -1548,7 +1548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodEffect: {fileID: 1000011672605262, guid: 340b09980ccfc574683bc933559c9a13,
     type: 2}
-  deathSoundObj: {fileID: 1000010157968582, guid: 4177ef21b21cb894b839e1615b6556c3,
+  deathSoundObj: {fileID: 1000011623125426, guid: 644bb1acafd84c3439c64fd2ef4df8d6,
     type: 2}
   hp: 30
   damageValue: 10

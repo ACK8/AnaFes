@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private int damageValue;    //ダメージ値
     [SerializeField]
-    private float attackAnimRate;   //攻撃が有効になるアニメーション時間
+    private float attackAnimRate; //攻撃が有効になるアニメーション時間
     [SerializeField]
     private float attackDist;   //攻撃を始めるプレイヤーとの距離
     [SerializeField]
@@ -147,7 +147,11 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger("Hit");
             hp -= damageValue * damageMagnification;
 
+            Debug.Log(damageValue * damageMagnification);
+
             if (damageMagnification >= 3) isHeadDeath = true;
+
+            enemyAudioSource.Stop();
 
             AudioManager.Instance.PlaySE("Enemy_Hit", enemyAudioSource);
 
@@ -172,6 +176,7 @@ public class Enemy : MonoBehaviour
             //Hit
             anim.SetTrigger("Hit");
             hp -= damageValue * damageMagnification;
+            if (damageMagnification >= 3) isHeadDeath = true;
 
             int rand = Random.Range(0, 3);
             if (rand == 0)

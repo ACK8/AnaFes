@@ -178,10 +178,10 @@ MonoBehaviour:
   waveNum: 0
   waveSwitchingTime:
   - 30
-  - 60
+  - 90
   - 160
   spawnWait:
+  - 4
   - 3
   - 2
-  - 1
   spawnWaitOld: 0

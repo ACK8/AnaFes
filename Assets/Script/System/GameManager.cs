@@ -22,7 +22,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager>
     
     public void CreateSpawnPoint()
     {
-        createdSpawnPoint = Instantiate(spawnPoint);
+        Debug.Log("CreateSpawnPoint");
+
+        if(createdSpawnPoint == null)
+        {
+            createdSpawnPoint = Instantiate(spawnPoint);
+        }
     }
 
     public void InitGame()

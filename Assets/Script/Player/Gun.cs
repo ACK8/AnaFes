@@ -141,11 +141,11 @@ public class Gun : MonoBehaviour
     //弾をリロード
     public void Relod()
     {
-        AudioManager.Instance.PlaySE("Reload", gunAudio);
         if (isRelod) return;
 
         if (numBullet < numMaxBullet)
         {
+            AudioManager.Instance.PlaySE("Reload", gunAudio);
             isRelod = true;
             numBullet = numMaxBullet;
             currentRelodTime = maxRelodTime;

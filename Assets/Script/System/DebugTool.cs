@@ -17,14 +17,12 @@ public class DebugTool : MonoBehaviour
         //ゲームスタート
         if (Input.GetKeyDown(KeyCode.F1))
         {
-            Debug.Log("F1");
             menuCommpont.GameStart();
         }
 
         //リスタート
         if (Input.GetKeyDown(KeyCode.F2))
         {
-            Debug.Log("F2");
             menuCommpont.Restart();
         }
     }
