@@ -121,19 +121,20 @@ public class Enemy : MonoBehaviour
                 }
             }
 
-            //Death
-            if (hp <= 0 && isAlive)
-            {
-                anim.SetTrigger("Death");
-                isAlive = false;
-                navMesh.Stop();
-                if (isHeadDeath) Score.numScore += 500;
-                else Score.numScore += 100;
-                Instantiate(deathSoundObj);
-                Destroy(this.gameObject, 2f);
-            }
+        }
+        //Death
+        if (hp <= 0 && isAlive)
+        {
+            anim.SetTrigger("Death");
+            isAlive = false;
+            navMesh.Stop();
+            if (isHeadDeath) Score.numScore += 500;
+            else Score.numScore += 100;
+            Instantiate(deathSoundObj);
+            Destroy(this.gameObject, 2f);
         }
     }
+
 
     public void HitRaycast(RaycastHit hit, int damageMagnification)
     {
