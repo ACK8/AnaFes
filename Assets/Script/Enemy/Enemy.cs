@@ -5,6 +5,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject bloodEffect;
     [SerializeField]
+    private GameObject deathSoundObj;
+    [SerializeField]
     private int hp = 10;
     [SerializeField]
     private int damageValue;    //ダメージ値
@@ -96,17 +98,40 @@ public class Enemy : MonoBehaviour
         if (distance < attackDist)
         {
             anim.SetTrigger("Attack");
-        }
 
-        //Death
-        if (hp <= 0 && isAlive)
-        {
-            anim.SetTrigger("Death");
-            isAlive = false;
-            navMesh.Stop();
-            if(isHeadDeath) Score.numScore += 500;
-            else Score.numScore += 100;
-            Destroy(this.gameObject, 2f);
+            anim.Update(0);
+            AnimatorStateInfo stateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
+            if (stateInfo.IsName("Base Layer.Attack"))
+            {
+                if (stateInfo.normalizedTime < 0.1f)
+                {
+                    int rand = Random.Range(0, 300);
+                    if (rand == 0)
+                    {
+                        AudioManager.Instance.PlaySE("Enemy_Attack", enemyAudioSource);
+                    }
+                }
+            }
+            else
+            {
+                if (!enemyAudioSource.isPlaying)
+                {
+                    AudioManager.Instance.PlaySE("Enemy_Normal", enemyAudioSource);
+                }
+            }
+
+            //Death
+            if (hp <= 0 && isAlive)
+            {
+                anim.SetTrigger("Death");
+                isAlive = false;
+                navMesh.Stop();
+                if (isHeadDeath) Score.numScore += 500;
+                else Score.numScore += 100;
+                Instantiate(deathSoundObj);
+                Destroy(this.gameObject, 2f);
+            }
         }
     }
 
@@ -122,7 +147,9 @@ public class Enemy : MonoBehaviour
             anim.SetTrigger("Hit");
             hp -= damageValue * damageMagnification;
 
-            if(damageMagnification >= 3) isHeadDeath = true;
+            if (damageMagnification >= 3) isHeadDeath = true;
+
+            AudioManager.Instance.PlaySE("Enemy_Hit", enemyAudioSource);
 
             int rand = Random.Range(0, 3);
             if (rand == 0)
